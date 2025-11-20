@@ -70,7 +70,7 @@ function Header({ brandName, logoSrc = "/brotherhood-white.png", navLinks = defa
               height={170}
               priority
               quality={90}
-              className="h-11 w-49 sm:h-14 sm:w-49 md:h-16 md:w-49 lg:h-20 lg:w-59 xl:h-24 xl:w-59 object-contain object-center" 
+              className="h-11 w-39 sm:h-14 sm:w-45 md:h-16 md:w-49 lg:h-20 lg:w-59 xl:h-24 xl:w-59 object-contain object-center" 
               style={{ display: 'block', lineHeight: 0, verticalAlign: 'top', maxHeight: '100%', width: 'auto', height: 'auto' }}
             />
           </a>
