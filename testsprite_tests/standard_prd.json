@@ -1,0 +1,178 @@
+{
+  "meta": {
+    "project": "Brotherhood Barbershop Website",
+    "date": "2025-11-19",
+    "prepared_by": "Software Development Manager"
+  },
+  "product_overview": "The Brotherhood Barbershop website is a modern and responsive platform designed to provide barbershop customers with an intuitive and seamless online experience. It enables users to explore service offerings, browse a curated gallery, read customer reviews, and conveniently book appointments via WhatsApp integration.",
+  "core_goals": [
+    "Increase appointment bookings by simplifying the booking process",
+    "Showcase all barbershop services with detailed pricing and descriptions",
+    "Build customer trust through displaying testimonials and social proof",
+    "Provide comprehensive business information including location, hours, and contact details",
+    "Deliver a polished, accessible, and mobile-friendly interface to enhance user experience"
+  ],
+  "key_features": [
+    "Fixed responsive header with smooth scroll navigation and mobile menu toggle",
+    "Eye-catching full-screen hero section with animated statistics and call-to-action buttons",
+    "About section featuring animated story and values cards with hover effects",
+    "Service categories displayed as cards opening modals detailing services with pricing and booking links",
+    "Dynamic responsive image gallery integrated with Instagram, featuring lazy loading and hover overlays",
+    "Responsive reviews carousel showcasing 57 testimonials with auto-rotation and manual navigation",
+    "Interactive booking form with date/time validation, service selection, WhatsApp pre-filled message integration, and form validation",
+    "Contact section with business information, clickable phone/email links, and embedded responsive Google Map",
+    "FAQ accordion for common questions with smooth animations and accessible keyboard navigation",
+    "Footer providing site links, legal modals (privacy policy, terms), social media links, and business hours",
+    "Cookie consent banner for GDPR compliance with toggleable cookie categories and localStorage persistence",
+    "Technical optimizations including code splitting, lazy loading, image optimization, caching, and accessibility enhancements"
+  ],
+  "user_flow_summary": [
+    "Primary flow: User navigates homepage, clicks or scrolls to booking section, completes validated booking form, which opens WhatsApp pre-filled message for appointment scheduling, then submits and resets form.",
+    "Secondary flow: User explores service categories by clicking on cards, views detailed service listings and prices in modal, then navigates to booking section via modal’s 'Book Service' button.",
+    "Tertiary flow: User browses gallery images loaded via API, hovers to reveal Instagram icon overlay, and clicks images to open Instagram in new tab.",
+    "Information seeking flow: User navigates through about, services, gallery, reviews, FAQ, and contact sections, accessing detailed business info and contacting via provided phone, email, or WhatsApp links."
+  ],
+  "validation_criteria": [
+    "Navigation links produce smooth scrolling and mobile menu toggles function correctly",
+    "Hero section displays fully on all screen sizes with functioning CTA buttons and animated statistics",
+    "About and services sections’ animations and modals open/close with accurate content and correct service pricing",
+    "Gallery loads images from API with responsive grid, hover effects, Instagram links, and lazy loading working",
+    "Reviews carousel cycles automatically and manually, displaying unique avatars and star ratings correctly",
+    "Booking form enforces required fields, date/time constraints (no Sundays, limited hours), and opens correctly formatted WhatsApp message; form resets on submission",
+    "Contact section’s clickable phone/email links and embedded map function as expected and are responsive",
+    "FAQ accordion expands/collapses properly with smooth animations and supports keyboard navigation",
+    "Footer links, social media icons, and policy modals open and work on all devices",
+    "Cookie banner appears on first visit, allows toggling optional cookies, and respects persistence flags preventing repeat display",
+    "Performance metrics meet criteria with fast load times, image optimizations, and smooth animations",
+    "Accessibility features such as keyboard navigation, ARIA labels, focus indicators, and reduced motion support conform to WCAG 2.1 AA standards"
+  ],
+  "code_summary": {
+    "tech_stack": [
+      "TypeScript",
+      "Next.js 15.3.0",
+      "React 19",
+      "Tailwind CSS 4",
+      "Framer Motion",
+      "Node.js"
+    ],
+    "features": [
+      {
+        "name": "Header Navigation",
+        "description": "Fixed header with responsive navigation menu, logo, mobile menu toggle, and smooth scroll navigation",
+        "files": [
+          "app/components/Header.tsx",
+          "app/utils/scroll.ts"
+        ]
+      },
+      {
+        "name": "Hero Section",
+        "description": "Full-screen hero section with title, subtitle, CTA buttons, background image, stats display, and scroll indicator",
+        "files": [
+          "app/components/Hero.tsx"
+        ]
+      },
+      {
+        "name": "About Section",
+        "description": "About us section with story and values cards, featuring animated content and hover effects",
+        "files": [
+          "app/page.tsx"
+        ]
+      },
+      {
+        "name": "Services Section",
+        "description": "Service categories display with modal popup showing detailed service listings, pricing, and booking links",
+        "files": [
+          "app/page.tsx",
+          "app/components/ServiceCategoryModal.tsx"
+        ]
+      },
+      {
+        "name": "Gallery",
+        "description": "Dynamic image gallery grid with Instagram integration, lazy loading, and hover effects",
+        "files": [
+          "app/components/GalleryGrid.tsx",
+          "app/api/gallery/route.ts"
+        ]
+      },
+      {
+        "name": "Reviews Carousel",
+        "description": "Responsive reviews carousel with pagination, auto-rotation, unique avatars, and star ratings",
+        "files": [
+          "app/components/ReviewsCarousel.tsx"
+        ]
+      },
+      {
+        "name": "Booking Form",
+        "description": "Interactive booking form with date/time selection, service selection, WhatsApp integration, and form validation",
+        "files": [
+          "app/components/BookingForm.tsx"
+        ]
+      },
+      {
+        "name": "Contact Section",
+        "description": "Contact information display with map embed, phone, email, and business hours",
+        "files": [
+          "app/page.tsx",
+          "app/components/MapEmbed.tsx"
+        ]
+      },
+      {
+        "name": "FAQ Accordion",
+        "description": "Expandable FAQ accordion with smooth animations and keyboard navigation",
+        "files": [
+          "app/components/FAQAccordion.tsx"
+        ]
+      },
+      {
+        "name": "Footer",
+        "description": "Site footer with links, contact information, and social media",
+        "files": [
+          "app/components/Footer.tsx"
+        ]
+      },
+      {
+        "name": "Cookie Banner",
+        "description": "Cookie consent banner for GDPR compliance",
+        "files": [
+          "app/components/CookieBanner.tsx"
+        ]
+      },
+      {
+        "name": "Policy Modals",
+        "description": "Privacy policy and terms of service modals",
+        "files": [
+          "app/components/PolicyModal.tsx"
+        ]
+      },
+      {
+        "name": "Health Check API",
+        "description": "Health check endpoint for monitoring service status",
+        "files": [
+          "app/api/health/route.ts"
+        ]
+      },
+      {
+        "name": "Gallery API",
+        "description": "API endpoint that dynamically reads and serves gallery images from the public directory with caching",
+        "files": [
+          "app/api/gallery/route.ts"
+        ]
+      },
+      {
+        "name": "Scroll Utilities",
+        "description": "Smooth scroll utility function for anchor link navigation",
+        "files": [
+          "app/utils/scroll.ts"
+        ]
+      },
+      {
+        "name": "Main Page Layout",
+        "description": "Homepage with all sections integrated including hero, about, services, gallery, reviews, booking, contact, and FAQ",
+        "files": [
+          "app/page.tsx",
+          "app/layout.tsx"
+        ]
+      }
+    ]
+  }
+}

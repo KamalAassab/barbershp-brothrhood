@@ -1,0 +1,18 @@
+{
+  "status": "commited",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:3000",
+  "loginUser": "4344604a@emailvanish.com",
+  "loginPassword": "4344604a@Emailvanish.com",
+  "executionArgs": {
+    "projectName": "BarebrCosmicc",
+    "projectPath": "C:\\Users\\4B\\Desktop\\BarebrCosmicc",
+    "testIds": [],
+    "additionalInstruction": "All tests have been fixed to use real selectors and interactions. Please run all tests and verify they pass successfully.",
+    "envs": {
+      "API_KEY": "sk-user-9p5ZUpFRKsqETJoidV0ckM3f6aDVwzIIEHOyIEDu0NBOAB8ZJAS_iz_eivaxi-iWr4IYktofEhn2v5K3EP9RjuSBlXysEeVR2vK7En_cQcFU0tTYeb19lZDrwqe6U-q2oTY"
+    }
+  },
+  "proxy": "http://ab8071d1-0bdd-4b64-ad7d-e416b1bb5fd4:EZoRPhe4d4CxuTe9VW2NbVOwyzZjuJjD@tun.testsprite.com:8080"
+}

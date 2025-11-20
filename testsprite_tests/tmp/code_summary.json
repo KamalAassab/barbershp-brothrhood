@@ -1,0 +1,84 @@
+{
+  "tech_stack": [
+    "TypeScript",
+    "JavaScript",
+    "Next.js 15.3.0",
+    "React 19.0.0",
+    "Tailwind CSS 4",
+    "Framer Motion 12.8.0",
+    "Node.js",
+    "Playwright"
+  ],
+  "features": [
+    {
+      "name": "Header Navigation",
+      "description": "Fixed header with responsive navigation menu, mobile menu toggle, logo display, and smooth scroll navigation",
+      "files": ["app/components/Header.tsx"]
+    },
+    {
+      "name": "Hero Section",
+      "description": "Hero section with animated background, title, subtitle, CTA buttons, business statistics, and scroll indicator",
+      "files": ["app/components/Hero.tsx"]
+    },
+    {
+      "name": "About Section",
+      "description": "About section displaying company story and values with hover effects and animations",
+      "files": ["app/page.tsx"]
+    },
+    {
+      "name": "Service Categories",
+      "description": "Service category cards with modal popup showing service details, pricing, and booking links",
+      "files": ["app/components/ServiceCategoryModal.tsx", "app/constants/services.ts", "app/page.tsx"]
+    },
+    {
+      "name": "Booking Form",
+      "description": "Comprehensive booking form with date/time validation, service selection, and WhatsApp integration",
+      "files": ["app/components/BookingForm.tsx"]
+    },
+    {
+      "name": "Gallery",
+      "description": "Dynamic gallery grid with lazy loading, Instagram integration, and hover overlay effects",
+      "files": ["app/components/GalleryGrid.tsx", "app/api/gallery/route.ts"]
+    },
+    {
+      "name": "Reviews Carousel",
+      "description": "Auto-rotating reviews carousel with 57+ testimonials, pagination, unique avatars, and star ratings",
+      "files": ["app/components/ReviewsCarousel.tsx", "app/constants/reviews.ts"]
+    },
+    {
+      "name": "FAQ Accordion",
+      "description": "FAQ accordion component with expand/collapse animations and keyboard navigation support",
+      "files": ["app/components/FAQAccordion.tsx", "app/constants/faqs.ts"]
+    },
+    {
+      "name": "Contact Section",
+      "description": "Contact section with business information, clickable phone/email links, and embedded Google Maps",
+      "files": ["app/components/MapEmbed.tsx", "app/page.tsx"]
+    },
+    {
+      "name": "Footer",
+      "description": "Footer with quick links, contact information, social media icons, and policy modals",
+      "files": ["app/components/Footer.tsx", "app/components/PolicyModal.tsx"]
+    },
+    {
+      "name": "Cookie Consent",
+      "description": "GDPR-compliant cookie consent banner with granular preferences and localStorage persistence",
+      "files": ["app/components/CookieBanner.tsx"]
+    },
+    {
+      "name": "Scroll Utilities",
+      "description": "Smooth scroll functionality for navigation links",
+      "files": ["app/utils/scroll.ts"]
+    },
+    {
+      "name": "Animation Utilities",
+      "description": "Animation utilities with reduced motion support",
+      "files": ["app/utils/motion.ts"]
+    },
+    {
+      "name": "Constants",
+      "description": "Shared constants for contact information, business hours, and configuration",
+      "files": ["app/utils/constants.ts"]
+    }
+  ]
+}

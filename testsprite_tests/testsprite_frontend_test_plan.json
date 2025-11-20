@@ -1,0 +1,494 @@
+[
+  {
+    "id": "TC001",
+    "title": "Header Navigation Responsive and Functionality",
+    "description": "Verify the fixed header navigation menu is responsive across devices, the logo displays correctly, mobile menu toggles open and close correctly, and all navigation links produce smooth scrolling to corresponding sections.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Load homepage on desktop screen"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify header is fixed and visible"
+      },
+      {
+        "type": "action",
+        "description": "Click each navigation link"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm smooth scroll to corresponding section"
+      },
+      {
+        "type": "action",
+        "description": "Resize viewport to mobile size"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify mobile menu toggle button is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the mobile menu toggle button to open menu"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify menu items are displayed"
+      },
+      {
+        "type": "action",
+        "description": "Click the toggle button again to close the menu"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify menu is hidden"
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "Hero Section Display and Animation",
+    "description": "Check that the hero section loads fully on desktop and mobile, displays the title, subtitle, CTA buttons, background image, and animated statistics with scroll indicator functioning correctly.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Load homepage on desktop and mobile devices"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify hero title and subtitle text are visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify background image loads properly"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify animated statistics count up on page load"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify CTA buttons are visible and clickable"
+      },
+      {
+        "type": "action",
+        "description": "Click each CTA button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify expected navigation or page action triggered"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify scroll indicator is visible and scrolls user down on click"
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "About Section Animations and Hover Effects",
+    "description": "Confirm the About section's story and values cards display correct content, animations play on load, and hover effects trigger as expected.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the About section on homepage"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify story and values cards content matches specification"
+      },
+      {
+        "type": "assertion",
+        "description": "Observe cards for entrance animations on scroll into view"
+      },
+      {
+        "type": "action",
+        "description": "Hover mouse over each card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify card hover animations and effects trigger smoothly"
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "Services Section Modal Content and Booking Link",
+    "description": "Verify clicking any service category card opens a modal with accurate service details, prices and a functional 'Book Service' link that navigates to booking section.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Scroll to Services section"
+      },
+      {
+        "type": "action",
+        "description": "Click each service category card one by one"
+      },
+      {
+        "type": "assertion",
+        "description": "Modal opens with correct service listings and pricing"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify modal content matches expected services for selected category"
+      },
+      {
+        "type": "action",
+        "description": "Click 'Book Service' button inside modal"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm navigation or scroll to Booking section"
+      },
+      {
+        "type": "action",
+        "description": "Close modal and repeat for all categories"
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Gallery Load, Lazy Loading, Hover Overlay and Instagram Link",
+    "description": "Validate the gallery loads images dynamically via API, lazy loads images correctly, shows hover overlays with Instagram icon, and clicking images opens Instagram properly.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Gallery section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify images load in a responsive grid layout"
+      },
+      {
+        "type": "assertion",
+        "description": "Scroll down to trigger lazy loading for images outside initial viewport"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify images load progressively as scrolled into view"
+      },
+      {
+        "type": "action",
+        "description": "Hover over individual gallery images"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify Instagram icon overlay appears smoothly"
+      },
+      {
+        "type": "action",
+        "description": "Click on Instagram icon overlay or image"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm Instagram web page opens in a new browser tab"
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Reviews Carousel Auto-Rotation and Manual Navigation",
+    "description": "Ensure the reviews carousel cycles testimonials automatically, manual navigation buttons work, unique avatars and star ratings display correctly across all 57 testimonials.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Reviews section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify review cards display unique avatars and corresponding star ratings"
+      },
+      {
+        "type": "assertion",
+        "description": "Observe carousel auto-rotation through multiple testimonials"
+      },
+      {
+        "type": "action",
+        "description": "Click manual navigation arrows or pagination controls"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify carousel changes to selected testimonial immediately"
+      },
+      {
+        "type": "assertion",
+        "description": "Test carousel cycles through all 57 reviews without repeats or errors"
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "Booking Form Validation and WhatsApp Integration",
+    "description": "Check that the booking form enforces all required fields, validates date/time constraints (no Sundays, limited hours), service selection works, and that submission opens a correctly formatted WhatsApp pre-filled message. Confirm form resets after submission.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Booking section"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to submit the form with no input"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify validation errors present for all required fields"
+      },
+      {
+        "type": "action",
+        "description": "Input invalid date (Sunday) and/or time outside allowed hours"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify date/time validation error messages displayed"
+      },
+      {
+        "type": "action",
+        "description": "Fill form with valid date/time, select a valid service, and enter all required info"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm WhatsApp opens with pre-filled message summarizing the booking details accurately"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify booking form is reset to initial state after submission"
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Contact Section Links and Responsive Map",
+    "description": "Verify contact info displays correct business details, phone and email links are clickable and launch default apps, and embedded Google Map is responsive on all devices.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Contact section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify displayed business info matches specification"
+      },
+      {
+        "type": "action",
+        "description": "Click phone number link"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm the system initiates call or dialer app"
+      },
+      {
+        "type": "action",
+        "description": "Click email link"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify system launches mail client with correct recipient"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify Google Map loads and is visible"
+      },
+      {
+        "type": "action",
+        "description": "Resize viewport to multiple sizes"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm map scales responsively and remains functional"
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "FAQ Accordion Expand/Collapse and Keyboard Navigation",
+    "description": "Ensure FAQ items expand and collapse properly with smooth animations on click, and that keyboard navigation (tab, enter, space) can open and close FAQ items to comply with accessibility requirements.",
+    "category": "accessibility",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to FAQ section"
+      },
+      {
+        "type": "action",
+        "description": "Click on each FAQ question"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify answer expands with smooth animation"
+      },
+      {
+        "type": "action",
+        "description": "Click again on the same question"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm answer collapses smoothly"
+      },
+      {
+        "type": "action",
+        "description": "Use keyboard tab key to focus FAQ questions"
+      },
+      {
+        "type": "action",
+        "description": "Press Enter and Space keys on focused items"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify questions expand or collapse accordingly"
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Footer Links and Policy Modals Functionality",
+    "description": "Check that footer links and social media icons navigate correctly, and that privacy policy and terms modals open, display content, and close properly on all devices.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Scroll to footer"
+      },
+      {
+        "type": "action",
+        "description": "Click each site link in footer"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm navigation or expected page section appearance"
+      },
+      {
+        "type": "action",
+        "description": "Click each social media icon"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify respective social media page opens in new tab"
+      },
+      {
+        "type": "action",
+        "description": "Click privacy policy and terms links to open modals"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm modals open with full content displayed"
+      },
+      {
+        "type": "action",
+        "description": "Click close button or outside modal area"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify modals close smoothly"
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "Cookie Consent Banner Display and Persistence",
+    "description": "Verify cookie consent banner appears on first visit, allows toggling optional cookies categories, saves preferences in localStorage, and does not reappear on subsequent visits.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Clear browser cookies and localStorage"
+      },
+      {
+        "type": "action",
+        "description": "Load homepage"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify cookie consent banner is visible"
+      },
+      {
+        "type": "action",
+        "description": "Toggle different cookie categories on and off"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm toggles update states correctly"
+      },
+      {
+        "type": "action",
+        "description": "Accept or save cookie preferences"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify banner disappears"
+      },
+      {
+        "type": "action",
+        "description": "Reload or revisit site"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm banner does not reappear due to saved preferences"
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "Performance and Accessibility Validation",
+    "description": "Test overall website load time meets performance targets, images are optimized and lazy loaded, animations run smoothly, and accessibility features (keyboard navigation, ARIA labels, focus rings, reduced motion support) conform to WCAG 2.1 AA standards.",
+    "category": "performance",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Conduct performance test using Lighthouse or equivalent"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify site loads within target time and images are optimized"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm lazy loading triggers correctly during scroll"
+      },
+      {
+        "type": "assertion",
+        "description": "Validate animations are smooth and non-janky"
+      },
+      {
+        "type": "action",
+        "description": "Test full keyboard navigation through interactive elements"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify focus indicators are visible and ARIA labels exist where appropriate"
+      },
+      {
+        "type": "action",
+        "description": "Enable user preference for reduced motion"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm animations are reduced or disabled in compliance"
+      }
+    ]
+  }
+]

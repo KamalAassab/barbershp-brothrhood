@@ -1,0 +1,68 @@
+import type { Review } from "@/app/components/ReviewsCarousel";
+
+export const REVIEWS: Review[] = [
+  // Haircut Reviews
+  { name: "Jordan", role: "Regular", text: "Best fade in town! The skin fade I got was absolutely perfect. Super clean shop and professional service. Always leave looking sharp!", avatarId: "reviewer1", rating: 5 },
+  { name: "Marcus", role: "Walk-in", text: "Got a classic haircut and it exceeded my expectations. The barber took time to understand what I wanted and delivered perfectly. Will be back!", avatarId: "reviewer2", rating: 5 },
+  { name: "Michael", role: "Regular", text: "The taper fade here is incredible. Always crisp and the styling advice is spot on. Top-notch service and skills every visit.", avatarId: "reviewer3", rating: 5 },
+  { name: "David", role: "Regular", text: "Got a pompadour cut and it looks amazing! The barbers really know their craft. Consistent quality every visit.", avatarId: "reviewer4", rating: 5 },
+  { name: "Ryan", role: "Regular", text: "Best haircut I've had in years. The long hair trim was done with precision and care. The team knows their craft!", avatarId: "reviewer5", rating: 5 },
+  { name: "Tom", role: "Regular", text: "Got a buzz cut and it was perfect. Quick, clean, and professional. Great atmosphere and even better cuts!", avatarId: "reviewer6", rating: 5 },
+  // Beard Reviews
+  { name: "James", role: "Regular", text: "The beard trim service is outstanding! Expert shaping and maintenance. They really understand beard grooming. Highly recommend!", avatarId: "reviewer7", rating: 5 },
+  { name: "Chris", role: "Walk-in", text: "Tried the hot towel shave for the first time. What an experience! Traditional straight razor shave with hot towel treatment was incredible. Will return!", avatarId: "reviewer8", rating: 5 },
+  { name: "Alex", role: "Regular", text: "The line up service is always perfect. Precise edge work and line definition every time. Professional service with attention to detail.", avatarId: "reviewer9", rating: 5 },
+  { name: "Daniel", role: "Regular", text: "Full beard service is amazing! Complete grooming including trim, shape, and styling. They remember my preferences and always deliver.", avatarId: "reviewer10", rating: 5 },
+  { name: "Brian", role: "Regular", text: "Mustache trim was done perfectly. Precise shaping and styling. Outstanding service every visit!", avatarId: "reviewer11", rating: 5 },
+  // Specialty Reviews
+  { name: "Jason", role: "Regular", text: "Got a hair design with custom patterns. Absolutely incredible work! The barber is a true artist. Top-tier service and results.", avatarId: "reviewer12", rating: 5 },
+  { name: "Anthony", role: "Regular", text: "Color service was amazing! Professional hair coloring and highlights. They take pride in their work and it shows. Highly satisfied!", avatarId: "reviewer13", rating: 5 },
+  { name: "Brandon", role: "Regular", text: "Hair & Beard Combo is the best! Complete grooming package done perfectly. The barbers are true professionals who care about quality.", avatarId: "reviewer14", rating: 5 },
+  { name: "Justin", role: "Regular", text: "Executive Cut with hot towel and styling was exceptional. Premium service with excellent results. Love the precision and attention to detail.", avatarId: "reviewer15", rating: 5 },
+  { name: "Nathan", role: "Regular", text: "Wedding Package was perfect for my special day! Premium styling and grooming. They take pride in their work and it shows in the results.", avatarId: "reviewer16", rating: 5 },
+  // Kids Reviews
+  { name: "Sarah", role: "Parent", text: "My son's first haircut here was amazing! Special first haircut experience with certificate. The barber was patient and made it fun. Highly recommend!", avatarId: "reviewer17", rating: 5 },
+  { name: "Emma", role: "Parent", text: "Kids cut service is excellent! Gentle, professional cut designed for children. My son loves coming here. Always satisfied with the results!", avatarId: "reviewer18", rating: 5 },
+  { name: "Jessica", role: "Parent", text: "Kids fade looks great! Clean fade style for kids done perfectly. The barbers are skilled and make the experience comfortable and fun.", avatarId: "reviewer19", rating: 5 },
+  { name: "Nicole", role: "Parent", text: "Kids design service is fantastic! Fun designs and patterns for kids. My child was so happy with the result. Best barbershop for kids!", avatarId: "reviewer20", rating: 5 },
+  { name: "Amanda", role: "Parent", text: "Regular kids cuts here are always perfect. The barbers are experienced with children and make the experience comfortable. Highly satisfied!", avatarId: "reviewer21", rating: 5 },
+  // General/Combined Service Reviews
+  { name: "Alicia", role: "Regular", text: "Always on time and great vibes. Whether it's a haircut or beard trim, they always deliver. The barbers really know their craft. Highly recommend!", avatarId: "reviewer22", rating: 5 },
+  { name: "Lisa", role: "First-time", text: "Impressed with the professionalism and skill across all services. Got exactly what I asked for and more! Will definitely be returning.", avatarId: "reviewer23", rating: 5 },
+  { name: "Kevin", role: "Walk-in", text: "Walked in and was immediately impressed. Tried multiple services and each one exceeded my expectations. Will be back regularly!", avatarId: "reviewer24", rating: 5 },
+  { name: "Rachel", role: "Regular", text: "Love coming here for all my grooming needs! Haircuts, beard trims, everything is top-notch. The cuts are always sharp and the service is exceptional.", avatarId: "reviewer25", rating: 5 },
+  { name: "Mark", role: "Regular", text: "Consistent quality across all services. Haircuts, beard grooming, specialty work - all done perfectly. This is my go-to barbershop for a reason.", avatarId: "reviewer26", rating: 5 },
+  { name: "Laura", role: "Regular", text: "The best barbershop experience I've had. Whether it's a simple trim or a complex design, they always deliver. Quality service and perfect results every time.", avatarId: "reviewer27", rating: 5 },
+  { name: "Steven", role: "Walk-in", text: "Great experience from start to finish. Tried different services and each one was amazing. Quick, professional, and the results are perfect.", avatarId: "reviewer28", rating: 5 },
+  { name: "Michelle", role: "Regular", text: "Always impressed with the quality of all services. Haircuts, beard trims, specialty work - all done with skill and care. The atmosphere is welcoming.", avatarId: "reviewer29", rating: 5 },
+  { name: "Ashley", role: "First-time", text: "Amazing experience! Tried multiple services and each one was perfect. The barber listened to what I wanted and delivered exactly that. Will return!", avatarId: "reviewer30", rating: 5 },
+  { name: "Robert", role: "Regular", text: "Professional service with excellent results across all services. The attention to detail is unmatched. Best barbershop in town!", avatarId: "reviewer31", rating: 5 },
+  { name: "Jennifer", role: "Regular", text: "Love the precision and care they put into every service. Haircuts, beard grooming, everything is done perfectly. Always leave looking my best!", avatarId: "reviewer32", rating: 5 },
+  { name: "William", role: "Regular", text: "Consistent excellence across all services. The barbers are true professionals who care about their craft. Quality service every visit.", avatarId: "reviewer33", rating: 5 },
+  { name: "Melissa", role: "Regular", text: "Best barbershop experience. Whether it's a haircut, beard trim, or specialty service, quality is always top-notch. Great atmosphere and perfect results.", avatarId: "reviewer34", rating: 5 },
+  { name: "Matthew", role: "Walk-in", text: "Walked in and was immediately taken care of. Tried different services and each one was perfect. The service was excellent and professional.", avatarId: "reviewer35", rating: 5 },
+  { name: "Stephanie", role: "Regular", text: "Always satisfied with all services. Haircuts, beard trims, specialty work - all done with skill and professionalism. Highly recommend!", avatarId: "reviewer36", rating: 5 },
+  { name: "Kimberly", role: "First-time", text: "Great first visit! Tried multiple services and each exceeded my expectations. The barber was professional and the results were perfect.", avatarId: "reviewer37", rating: 5 },
+  { name: "Joshua", role: "Regular", text: "The best service in town across all categories. Consistent quality and professional service every visit. They know how to deliver perfect results.", avatarId: "reviewer38", rating: 5 },
+  { name: "Angela", role: "Regular", text: "Love coming here! The attention to detail and customer service is exceptional across all services. Always leave feeling confident.", avatarId: "reviewer39", rating: 5 },
+  { name: "Andrew", role: "Regular", text: "Professional service with great results for all services. Haircuts, beard grooming, specialty work - the barbers are masters at their craft.", avatarId: "reviewer40", rating: 5 },
+  { name: "Brittany", role: "Regular", text: "Always leave feeling confident after any service. The cuts are sharp, beard trims are perfect, and specialty work is outstanding. Top-notch service!", avatarId: "reviewer41", rating: 5 },
+  { name: "Joseph", role: "Walk-in", text: "Quick service without compromising quality. Tried different services and each was done perfectly. The barber was skilled and efficient.", avatarId: "reviewer42", rating: 5 },
+  { name: "Samantha", role: "Regular", text: "Best barbershop experience I've had. Quality service across all categories and perfect results every time. Highly satisfied!", avatarId: "reviewer43", rating: 5 },
+  { name: "Christopher", role: "Regular", text: "Consistent excellence across all services. The team knows their craft and it shows in the results. Professional and skilled!", avatarId: "reviewer44", rating: 5 },
+  { name: "Lauren", role: "Regular", text: "The best service in town for all grooming needs. Professional, skilled, and always deliver perfect results. Highly recommend!", avatarId: "reviewer45", rating: 5 },
+  { name: "Megan", role: "First-time", text: "Excellent first visit! Tried multiple services and each one was perfect. The barber was patient, skilled, and delivered exactly what I wanted.", avatarId: "reviewer46", rating: 5 },
+  { name: "Emily", role: "Regular", text: "Top-notch service with excellent results across all services. The barbers are skilled and the atmosphere is great. Always satisfied!", avatarId: "reviewer47", rating: 5 },
+  { name: "Tyler", role: "Regular", text: "Consistent quality and professional service for all grooming needs. This is my go-to place for perfect cuts, beard trims, and specialty work.", avatarId: "reviewer48", rating: 5 },
+  { name: "Rebecca", role: "Regular", text: "Best service I've ever had! Whether it's a haircut, beard trim, or specialty design, they always deliver. The barber really knows what they're doing.", avatarId: "reviewer49", rating: 5 },
+  { name: "Jonathan", role: "Walk-in", text: "Great experience! Tried different services and each exceeded my expectations. Quick, professional, and perfect results every time.", avatarId: "reviewer50", rating: 5 },
+  { name: "Hannah", role: "Regular", text: "Always impressed with the quality across all services. The service is professional and the results are perfect. Best barbershop!", avatarId: "reviewer51", rating: 5 },
+  { name: "Olivia", role: "Regular", text: "Love coming here! The cuts are always sharp, beard trims are perfect, and specialty work is exceptional. Highly recommend!", avatarId: "reviewer52", rating: 5 },
+  { name: "Benjamin", role: "Regular", text: "Professional service with excellent results for all services. The attention to detail is what sets this place apart. Outstanding quality!", avatarId: "reviewer53", rating: 5 },
+  { name: "Grace", role: "First-time", text: "Amazing first experience! Tried multiple services and each was perfect. The barber was professional and the results exceeded expectations. Will return!", avatarId: "reviewer54", rating: 5 },
+  { name: "Samuel", role: "Regular", text: "The best barbershop in town for all grooming needs. Quality service, great atmosphere, and perfect results every visit across all services.", avatarId: "reviewer55", rating: 5 },
+  { name: "Isabella", role: "Regular", text: "Always satisfied with all services. The barbers are skilled professionals who deliver excellence. Haircuts, beard trims, everything is perfect!", avatarId: "reviewer56", rating: 5 },
+  { name: "Zachary", role: "Regular", text: "Consistent excellence every visit across all services. The team knows their craft and always delivers perfect cuts, trims, and specialty work.", avatarId: "reviewer57", rating: 5 }
+];
+
+
