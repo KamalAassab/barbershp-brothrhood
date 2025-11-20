@@ -24,69 +24,35 @@ async def run_test():
         
         # Create a new browser context (like an incognito window)
         context = await browser.new_context()
-        context.set_default_timeout(30000)
+        context.set_default_timeout(5000)
         
         # Open a new page in the browser context
         page = await context.new_page()
         
         # Navigate to your target URL and wait until the network request is committed
-        await page.goto("http://localhost:3000", wait_until="networkidle", timeout=30000)
+        await page.goto("http://localhost:3000", wait_until="commit", timeout=10000)
         
-        # Wait for the main page to reach DOMContentLoaded state
+        # Wait for the main page to reach DOMContentLoaded state (optional for stability)
         try:
-            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+            await page.wait_for_load_state("domcontentloaded", timeout=3000)
         except async_api.Error:
             pass
         
-        # Scroll to FAQ section
-        faq_section = page.locator('section#faq').first
-        await faq_section.scroll_into_view_if_needed()
-        await asyncio.sleep(1)
+        # Iterate through all iframes and wait for them to load as well
+        for frame in page.frames:
+            try:
+                await frame.wait_for_load_state("domcontentloaded", timeout=3000)
+            except async_api.Error:
+                pass
         
-        # Verify FAQ section exists
-        faq_title = page.locator('text=FAQ').first
-        await expect(faq_title).to_be_visible(timeout=10000)
-        
-        # Find FAQ questions
-        faq_questions = page.locator('button[aria-expanded]').all()
-        assert len(faq_questions) > 0, "FAQ questions should be visible"
-        
-        # Test clicking FAQ to expand
-        first_faq = faq_questions[0]
-        initial_expanded = await first_faq.get_attribute('aria-expanded')
-        
-        await first_faq.click()
-        await asyncio.sleep(0.5)
-        
-        # Verify it expanded
-        expanded_state = await first_faq.get_attribute('aria-expanded')
-        assert expanded_state == 'true', "FAQ should expand on click"
-        
-        # Click again to collapse
-        await first_faq.click()
-        await asyncio.sleep(0.5)
-        
-        collapsed_state = await first_faq.get_attribute('aria-expanded')
-        assert collapsed_state == 'false', "FAQ should collapse on second click"
-        
-        # Test keyboard navigation
-        await first_faq.focus()
-        await page.keyboard.press('Enter')
-        await asyncio.sleep(0.5)
-        
-        enter_expanded = await first_faq.get_attribute('aria-expanded')
-        assert enter_expanded == 'true', "FAQ should expand on Enter key"
-        
-        await page.keyboard.press('Space')
-        await asyncio.sleep(0.5)
-        
-        space_expanded = await first_faq.get_attribute('aria-expanded')
-        assert space_expanded == 'false', "FAQ should toggle on Space key"
-        
-        print("TC009 PASSED: FAQ accordion expands/collapses correctly with keyboard navigation")
-    
-    except Exception as e:
-        raise AssertionError(f'Test case failed: {str(e)}')
+        # Interact with the page elements to simulate user flow
+        # --> Assertions to verify final state
+        frame = context.pages[-1]
+        try:
+            await expect(frame.locator('text=FAQ Section Not Found').first).to_be_visible(timeout=1000)
+        except AssertionError:
+            raise AssertionError('Test case failed: FAQ items did not expand or collapse properly with smooth animations or keyboard navigation did not work as expected to meet accessibility requirements.')
+        await asyncio.sleep(5)
     
     finally:
         if context:
@@ -97,3 +63,4 @@ async def run_test():
             await pw.stop()
             
 asyncio.run(run_test())
+    

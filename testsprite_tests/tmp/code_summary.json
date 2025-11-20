@@ -1,84 +1,130 @@
 {
   "tech_stack": [
     "TypeScript",
-    "JavaScript",
     "Next.js 15.3.0",
-    "React 19.0.0",
+    "React 19",
     "Tailwind CSS 4",
-    "Framer Motion 12.8.0",
-    "Node.js",
-    "Playwright"
+    "Framer Motion",
+    "Node.js"
   ],
   "features": [
     {
       "name": "Header Navigation",
-      "description": "Fixed header with responsive navigation menu, mobile menu toggle, logo display, and smooth scroll navigation",
-      "files": ["app/components/Header.tsx"]
+      "description": "Fixed header with responsive navigation menu, logo, mobile menu toggle, and smooth scroll navigation",
+      "files": [
+        "app/components/Header.tsx",
+        "app/utils/scroll.ts"
+      ]
     },
     {
       "name": "Hero Section",
-      "description": "Hero section with animated background, title, subtitle, CTA buttons, business statistics, and scroll indicator",
-      "files": ["app/components/Hero.tsx"]
+      "description": "Full-screen hero section with title, subtitle, CTA buttons, background image, stats display, and scroll indicator",
+      "files": [
+        "app/components/Hero.tsx"
+      ]
     },
     {
       "name": "About Section",
-      "description": "About section displaying company story and values with hover effects and animations",
-      "files": ["app/page.tsx"]
+      "description": "About us section with story and values cards, featuring animated content and hover effects",
+      "files": [
+        "app/page.tsx"
+      ]
     },
     {
-      "name": "Service Categories",
-      "description": "Service category cards with modal popup showing service details, pricing, and booking links",
-      "files": ["app/components/ServiceCategoryModal.tsx", "app/constants/services.ts", "app/page.tsx"]
-    },
-    {
-      "name": "Booking Form",
-      "description": "Comprehensive booking form with date/time validation, service selection, and WhatsApp integration",
-      "files": ["app/components/BookingForm.tsx"]
+      "name": "Services Section",
+      "description": "Service categories display with modal popup showing detailed service listings, pricing, and booking links",
+      "files": [
+        "app/page.tsx",
+        "app/components/ServiceCategoryModal.tsx"
+      ]
     },
     {
       "name": "Gallery",
-      "description": "Dynamic gallery grid with lazy loading, Instagram integration, and hover overlay effects",
-      "files": ["app/components/GalleryGrid.tsx", "app/api/gallery/route.ts"]
+      "description": "Dynamic image gallery grid with Instagram integration, lazy loading, and hover effects",
+      "files": [
+        "app/components/GalleryGrid.tsx",
+        "app/api/gallery/route.ts"
+      ]
     },
     {
       "name": "Reviews Carousel",
-      "description": "Auto-rotating reviews carousel with 57+ testimonials, pagination, unique avatars, and star ratings",
-      "files": ["app/components/ReviewsCarousel.tsx", "app/constants/reviews.ts"]
+      "description": "Responsive reviews carousel with pagination, auto-rotation, unique avatars, and star ratings",
+      "files": [
+        "app/components/ReviewsCarousel.tsx"
+      ]
     },
     {
-      "name": "FAQ Accordion",
-      "description": "FAQ accordion component with expand/collapse animations and keyboard navigation support",
-      "files": ["app/components/FAQAccordion.tsx", "app/constants/faqs.ts"]
+      "name": "Booking Form",
+      "description": "Interactive booking form with date/time selection, service selection, WhatsApp integration, and form validation",
+      "files": [
+        "app/components/BookingForm.tsx"
+      ]
     },
     {
       "name": "Contact Section",
-      "description": "Contact section with business information, clickable phone/email links, and embedded Google Maps",
-      "files": ["app/components/MapEmbed.tsx", "app/page.tsx"]
+      "description": "Contact information display with map embed, phone, email, and business hours",
+      "files": [
+        "app/page.tsx",
+        "app/components/MapEmbed.tsx"
+      ]
+    },
+    {
+      "name": "FAQ Accordion",
+      "description": "Expandable FAQ accordion with smooth animations and keyboard navigation",
+      "files": [
+        "app/components/FAQAccordion.tsx"
+      ]
     },
     {
       "name": "Footer",
-      "description": "Footer with quick links, contact information, social media icons, and policy modals",
-      "files": ["app/components/Footer.tsx", "app/components/PolicyModal.tsx"]
+      "description": "Site footer with links, contact information, and social media",
+      "files": [
+        "app/components/Footer.tsx"
+      ]
     },
     {
-      "name": "Cookie Consent",
-      "description": "GDPR-compliant cookie consent banner with granular preferences and localStorage persistence",
-      "files": ["app/components/CookieBanner.tsx"]
+      "name": "Cookie Banner",
+      "description": "Cookie consent banner for GDPR compliance",
+      "files": [
+        "app/components/CookieBanner.tsx"
+      ]
+    },
+    {
+      "name": "Policy Modals",
+      "description": "Privacy policy and terms of service modals",
+      "files": [
+        "app/components/PolicyModal.tsx"
+      ]
+    },
+    {
+      "name": "Health Check API",
+      "description": "Health check endpoint for monitoring service status",
+      "files": [
+        "app/api/health/route.ts"
+      ]
+    },
+    {
+      "name": "Gallery API",
+      "description": "API endpoint that dynamically reads and serves gallery images from the public directory with caching",
+      "files": [
+        "app/api/gallery/route.ts"
+      ]
     },
     {
       "name": "Scroll Utilities",
-      "description": "Smooth scroll functionality for navigation links",
-      "files": ["app/utils/scroll.ts"]
+      "description": "Smooth scroll utility function for anchor link navigation",
+      "files": [
+        "app/utils/scroll.ts"
+      ]
     },
     {
-      "name": "Animation Utilities",
-      "description": "Animation utilities with reduced motion support",
-      "files": ["app/utils/motion.ts"]
-    },
-    {
-      "name": "Constants",
-      "description": "Shared constants for contact information, business hours, and configuration",
-      "files": ["app/utils/constants.ts"]
+      "name": "Main Page Layout",
+      "description": "Homepage with all sections integrated including hero, about, services, gallery, reviews, booking, contact, and FAQ",
+      "files": [
+        "app/page.tsx",
+        "app/layout.tsx"
+      ]
     }
   ]
 }
+

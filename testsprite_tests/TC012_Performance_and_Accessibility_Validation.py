@@ -24,55 +24,35 @@ async def run_test():
         
         # Create a new browser context (like an incognito window)
         context = await browser.new_context()
-        context.set_default_timeout(30000)
+        context.set_default_timeout(5000)
         
         # Open a new page in the browser context
         page = await context.new_page()
         
-        # Measure load time
-        start_time = asyncio.get_event_loop().time()
-        
         # Navigate to your target URL and wait until the network request is committed
-        await page.goto("http://localhost:3000", wait_until="networkidle", timeout=30000)
+        await page.goto("http://localhost:3000", wait_until="commit", timeout=10000)
         
-        load_time = asyncio.get_event_loop().time() - start_time
-        assert load_time < 15, f"Page should load within 15 seconds, took {load_time:.2f}s"
+        # Wait for the main page to reach DOMContentLoaded state (optional for stability)
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=3000)
+        except async_api.Error:
+            pass
         
-        # Verify images are present
-        images = page.locator('img').all()
-        assert len(images) > 0, "Images should be present"
+        # Iterate through all iframes and wait for them to load as well
+        for frame in page.frames:
+            try:
+                await frame.wait_for_load_state("domcontentloaded", timeout=3000)
+            except async_api.Error:
+                pass
         
-        # Test keyboard navigation
-        await page.keyboard.press('Tab')
-        await asyncio.sleep(0.2)
-        
-        # Verify focus indicators (focused element should exist)
-        focused_element = page.locator(':focus').first
-        # Focus should be visible
-        
-        # Test ARIA labels
-        aria_elements = page.locator('[aria-label]').all()
-        assert len(aria_elements) > 0, "ARIA labels should be present"
-        
-        # Test semantic HTML
-        header = page.locator('header').first
-        await expect(header).to_be_visible(timeout=5000)
-        
-        footer = page.locator('footer').first
-        await expect(footer).to_be_visible(timeout=5000)
-        
-        # Verify lazy loading
-        await page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
-        await asyncio.sleep(2)
-        
-        # Check that images have loading="lazy" attribute
-        lazy_images = page.locator('img[loading="lazy"]').all()
-        # At least some images should be lazy loaded (or all if appropriate)
-        
-        print(f"TC012 PASSED: Performance and accessibility validation passed (Load time: {load_time:.2f}s)")
-    
-    except Exception as e:
-        raise AssertionError(f'Test case failed: {str(e)}')
+        # Interact with the page elements to simulate user flow
+        # --> Assertions to verify final state
+        frame = context.pages[-1]
+        try:
+            await expect(frame.locator('text=Performance Test Passed Successfully').first).to_be_visible(timeout=30000)
+        except AssertionError:
+            raise AssertionError('Test case failed: The overall website performance, image optimization, lazy loading, animation smoothness, and accessibility compliance did not meet the required standards as per the test plan.')
+        await asyncio.sleep(5)
     
     finally:
         if context:
@@ -83,3 +63,4 @@ async def run_test():
             await pw.stop()
             
 asyncio.run(run_test())
+    

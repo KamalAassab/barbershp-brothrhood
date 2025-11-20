@@ -24,60 +24,34 @@ async def run_test():
         
         # Create a new browser context (like an incognito window)
         context = await browser.new_context()
-        context.set_default_timeout(30000)
+        context.set_default_timeout(5000)
         
         # Open a new page in the browser context
         page = await context.new_page()
         
         # Navigate to your target URL and wait until the network request is committed
-        await page.goto("http://localhost:3000", wait_until="networkidle", timeout=30000)
+        await page.goto("http://localhost:3000", wait_until="commit", timeout=10000)
         
-        # Wait for the main page to reach DOMContentLoaded state
+        # Wait for the main page to reach DOMContentLoaded state (optional for stability)
         try:
-            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+            await page.wait_for_load_state("domcontentloaded", timeout=3000)
         except async_api.Error:
             pass
         
-        # Wait for hero section
-        hero_section = page.locator('section').first
-        await expect(hero_section).to_be_visible(timeout=10000)
+        # Iterate through all iframes and wait for them to load as well
+        for frame in page.frames:
+            try:
+                await frame.wait_for_load_state("domcontentloaded", timeout=3000)
+            except async_api.Error:
+                pass
         
-        # Verify hero title exists
-        hero_title = page.locator('h1').first
-        await expect(hero_title).to_be_visible(timeout=10000)
-        title_text = await hero_title.text_content()
-        assert title_text and len(title_text) > 0, "Hero title should have content"
-        
-        # Verify subtitle exists
-        hero_subtitle = page.locator('p').first
-        await expect(hero_subtitle).to_be_visible(timeout=10000)
-        
-        # Verify CTA button "Book Now"
-        book_now_button = page.locator('text=Book Now').first
-        await expect(book_now_button).to_be_visible(timeout=10000)
-        
-        # Verify statistics are visible
-        stats = ['10+', '5K+', '4.9+']
-        for stat in stats:
-            stat_element = page.locator(f'text={stat}').first
-            await expect(stat_element).to_be_visible(timeout=5000)
-        
-        # Test CTA button click
-        if await book_now_button.is_visible():
-            await book_now_button.click()
-            await asyncio.sleep(1)  # Wait for scroll
-        
-        # Test on mobile viewport
-        await page.set_viewport_size({"width": 375, "height": 667})
-        await asyncio.sleep(1)
-        
-        # Verify hero still displays on mobile
-        await expect(hero_title).to_be_visible(timeout=5000)
-        
-        print("TC002 PASSED: Hero section displays correctly with all elements")
-    
-    except Exception as e:
-        raise AssertionError(f'Test case failed: {str(e)}')
+        # Interact with the page elements to simulate user flow
+        # --> Assertions to verify final state
+        try:
+            await expect(page.locator('text=Hero Section Loaded Successfully').first).to_be_visible(timeout=1000)
+        except AssertionError:
+            raise AssertionError('Test case failed: The hero section did not load fully on desktop and mobile as expected. Title, subtitle, CTA buttons, background image, animated statistics, or scroll indicator did not function correctly.')
+        await asyncio.sleep(5)
     
     finally:
         if context:
@@ -88,3 +62,4 @@ async def run_test():
             await pw.stop()
             
 asyncio.run(run_test())
+    

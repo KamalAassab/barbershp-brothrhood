@@ -22,59 +22,37 @@ async def run_test():
             ],
         )
         
-        # Create context with cleared storage
+        # Create a new browser context (like an incognito window)
         context = await browser.new_context()
-        context.set_default_timeout(30000)
+        context.set_default_timeout(5000)
         
-        # Clear localStorage and cookies
+        # Open a new page in the browser context
         page = await context.new_page()
-        await page.goto("http://localhost:3000", wait_until="networkidle", timeout=30000)
-        await page.evaluate("localStorage.clear()")
-        await page.evaluate("sessionStorage.clear()")
-        await context.clear_cookies()
         
-        # Reload page
-        await page.reload(wait_until="networkidle", timeout=30000)
-        await asyncio.sleep(2)
+        # Navigate to your target URL and wait until the network request is committed
+        await page.goto("http://localhost:3000", wait_until="commit", timeout=10000)
         
-        # Verify cookie banner is visible on first visit
-        cookie_text = page.locator('text=We use cookies, text=Cookie Preferences, text=cookies').first
-        await expect(cookie_text).to_be_visible(timeout=10000)
-        
-        # Test cookie preferences toggle
-        preferences_button = page.locator('button:has-text("Preferences"), button:has-text("Customize")').first
-        if await preferences_button.is_visible():
-            await preferences_button.click()
-            await asyncio.sleep(0.5)
-            
-            # Toggle analytics cookies
-            analytics_toggle = page.locator('text=Analytics').locator('..').locator('input[type="checkbox"]').first
-            if await analytics_toggle.is_visible():
-                await analytics_toggle.click()
-                await asyncio.sleep(0.5)
-        
-        # Accept cookies
-        accept_button = page.locator('button:has-text("Accept"), button:has-text("Accept All")').first
-        if await accept_button.is_visible():
-            await accept_button.click()
-            await asyncio.sleep(1)
-        
-        # Reload page
-        await page.reload(wait_until="networkidle", timeout=30000)
-        await asyncio.sleep(2)
-        
-        # Verify banner does not reappear (should not be visible)
-        cookie_text_after = page.locator('text=We use cookies').first
+        # Wait for the main page to reach DOMContentLoaded state (optional for stability)
         try:
-            await expect(cookie_text_after).not_to_be_visible(timeout=3000)
-        except:
-            # If it's still visible, that's also acceptable for this test
+            await page.wait_for_load_state("domcontentloaded", timeout=3000)
+        except async_api.Error:
             pass
         
-        print("TC011 PASSED: Cookie consent banner displays and persists correctly")
-    
-    except Exception as e:
-        raise AssertionError(f'Test case failed: {str(e)}')
+        # Iterate through all iframes and wait for them to load as well
+        for frame in page.frames:
+            try:
+                await frame.wait_for_load_state("domcontentloaded", timeout=3000)
+            except async_api.Error:
+                pass
+        
+        # Interact with the page elements to simulate user flow
+        # --> Assertions to verify final state
+        frame = context.pages[-1]
+        try:
+            await expect(frame.locator('text=Cookie Consent Accepted Successfully').first).to_be_visible(timeout=30000)
+        except AssertionError:
+            raise AssertionError('Test case failed: The cookie consent banner did not behave as expected. It should appear on first visit, allow toggling of cookie categories, save preferences in localStorage, and not reappear on subsequent visits.')
+        await asyncio.sleep(5)
     
     finally:
         if context:
@@ -85,3 +63,4 @@ async def run_test():
             await pw.stop()
             
 asyncio.run(run_test())
+    

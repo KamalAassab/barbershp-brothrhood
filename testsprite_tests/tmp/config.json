@@ -1,8 +1,8 @@
 {
-  "status": "commited",
+  "status": "init",
   "type": "frontend",
   "scope": "codebase",
-  "localEndpoint": "http://localhost:3000",
+  "localEndpoint": "http://localhost:3000/",
   "loginUser": "4344604a@emailvanish.com",
   "loginPassword": "4344604a@Emailvanish.com",
   "executionArgs": {

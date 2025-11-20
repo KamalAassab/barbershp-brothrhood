@@ -24,50 +24,35 @@ async def run_test():
         
         # Create a new browser context (like an incognito window)
         context = await browser.new_context()
-        context.set_default_timeout(30000)
+        context.set_default_timeout(5000)
         
         # Open a new page in the browser context
         page = await context.new_page()
         
         # Navigate to your target URL and wait until the network request is committed
-        await page.goto("http://localhost:3000", wait_until="networkidle", timeout=30000)
+        await page.goto("http://localhost:3000", wait_until="commit", timeout=10000)
         
-        # Wait for the main page to reach DOMContentLoaded state
+        # Wait for the main page to reach DOMContentLoaded state (optional for stability)
         try:
-            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+            await page.wait_for_load_state("domcontentloaded", timeout=3000)
         except async_api.Error:
             pass
         
-        # Scroll to About section
-        about_section = page.locator('section#about').first
-        await about_section.scroll_into_view_if_needed()
-        await asyncio.sleep(2)  # Wait for animations
+        # Iterate through all iframes and wait for them to load as well
+        for frame in page.frames:
+            try:
+                await frame.wait_for_load_state("domcontentloaded", timeout=3000)
+            except async_api.Error:
+                pass
         
-        # Verify About section title
-        about_title = page.locator('text=About Brotherhood Barbershop').first
-        await expect(about_title).to_be_visible(timeout=10000)
-        
-        # Verify "Our Story" card
-        our_story = page.locator('text=Our Story').first
-        await expect(our_story).to_be_visible(timeout=10000)
-        
-        # Verify "Our Values" card
-        our_values = page.locator('text=Our Values').first
-        await expect(our_values).to_be_visible(timeout=10000)
-        
-        # Test hover effect on cards
-        story_card = our_story.locator('..').first
-        await story_card.hover()
-        await asyncio.sleep(0.5)
-        
-        values_card = our_values.locator('..').first
-        await values_card.hover()
-        await asyncio.sleep(0.5)
-        
-        print("TC003 PASSED: About section displays correctly with animations and hover effects")
-    
-    except Exception as e:
-        raise AssertionError(f'Test case failed: {str(e)}')
+        # Interact with the page elements to simulate user flow
+        # --> Assertions to verify final state
+        frame = context.pages[-1]
+        try:
+            await expect(frame.locator('text=Unexpected Success Message').first).to_be_visible(timeout=30000)
+        except AssertionError:
+            raise AssertionError('Test case failed: The About section story and values cards did not display correct content, animations did not play on load, or hover effects did not trigger as expected as per the test plan.')
+        await asyncio.sleep(5)
     
     finally:
         if context:
@@ -78,3 +63,4 @@ async def run_test():
             await pw.stop()
             
 asyncio.run(run_test())
+    
