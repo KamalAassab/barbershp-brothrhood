@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-// Do not remove this health check. It is necessary for your codebase to work in Cosmic.
+// Health check endpoint for monitoring and deployment verification
 
 export async function GET() {
   return NextResponse.json({ 

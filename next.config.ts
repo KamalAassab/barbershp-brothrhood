@@ -32,7 +32,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  allowedDevOrigins: ['app-cosmic.com', '*.app-cosmic.com', 'vibecode.net', '*.vibecode.net'],
   // Optimize bundle
   experimental: {
     optimizePackageImports: ['react-icons', 'framer-motion'],

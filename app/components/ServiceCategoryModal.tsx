@@ -76,6 +76,7 @@ export default function ServiceCategoryModal({
       window.addEventListener("keydown", handleEscape);
       return () => window.removeEventListener("keydown", handleEscape);
     }
+    return undefined;
   }, [isOpen, onClose]);
 
   // Render modal content

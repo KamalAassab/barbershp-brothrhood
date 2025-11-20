@@ -58,6 +58,7 @@ export default function CookieBanner({ message = "We use cookies to enhance your
           try {
             const parsed = JSON.parse(savedPrefs);
             // Remove marketing if it exists (for backward compatibility)
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const { marketing, ...cleanPrefs } = parsed;
             setPreferences({ ...cleanPrefs, essential: true }); // Always keep essential on
           } catch {

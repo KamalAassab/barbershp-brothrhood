@@ -726,12 +726,12 @@ This PRD document outlines the complete feature set, functionality, user flows, 
 - Links should work correctly
 - Should open Instagram in new tab
 
-### 6.4 Cosmic Ecosystem Integration
+### 6.4 Backend Services Integration
 
 **Purpose**: Backend services integration
 
 **Components**:
-- Authentication middleware
+- Firebase integration
 - Database integration
 - Payment processing (future)
 - Analytics tracking

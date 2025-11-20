@@ -1,20 +1,22 @@
-import { createAuthMiddleware } from 'cosmic-authentication';
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-// Create middleware with protected routes
-// All configuration can now be optional - defaults are handled internally
-export const middleware = createAuthMiddleware({
-  protectedRoutes: [
-    // No protected routes for now
-    // Uncomment below to protect routes (example protected pages)
-    // '/projects',
-    // '/dashboard',
-    // '/settings',
-  ]
-});
+// Middleware for request handling
+export function middleware(_request: NextRequest) {
+  // Add any custom middleware logic here
+  return NextResponse.next();
+}
 
-// Use the default matcher config or customize as needed
+// Configure which routes the middleware should run on
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|api/|login|callback|auth/|images/|fonts/|static/|public/|favicon.ico).*)',
-  ]
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     */
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+  ],
 };

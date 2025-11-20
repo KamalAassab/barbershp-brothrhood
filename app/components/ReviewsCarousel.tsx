@@ -86,12 +86,7 @@ function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
     }
   }, [cardsPerView, reviewsLength, startIndex]);
 
-  // Early return after hooks if no reviews
-  if (reviewsLength === 0) {
-    return null;
-  }
-
-  // Get current page of reviews (memoized)
+  // Get current page of reviews (memoized) - must be before early return
   const currentReviews = useMemo(
     () => safeReviews.slice(startIndex, startIndex + cardsPerView),
     [safeReviews, startIndex, cardsPerView]
@@ -233,7 +228,7 @@ function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
                   
                   {/* Review Text */}
                   <p className="text-sm sm:text-sm md:text-sm text-neutral-100 leading-relaxed font-light line-clamp-4">
-                    "{review.text}"
+                    &ldquo;{review.text}&rdquo;
                   </p>
                 </div>
               </motion.div>

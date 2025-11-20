@@ -21,20 +21,25 @@ export default function Hero({
   title,
   subtitle = "Modern barbershop with classic service.",
   primaryCta = { label: "Book Now", href: "#booking" },
-  secondaryCta = { label: "Call", href: "tel:+10000000000" },
-  imageSrc = "/assets/hero-placeholder.svg",
-  imageAlt = "Barbershop hero image",
+  secondaryCta: _secondaryCta,
+  imageSrc: _imageSrc,
+  imageAlt: _imageAlt,
   backgroundSrc,
   backgroundAlt = "Barbershop background"
 }: HeroProps) {
+  // Suppress unused variable warnings - these props are part of the interface but not used in this implementation
+  void _secondaryCta;
+  void _imageSrc;
+  void _imageAlt;
   const hasBg = Boolean(backgroundSrc);
   
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden pt-20 sm:pt-24 md:pt-24 pb-16 sm:pb-20 md:pb-20 lg:pb-24" suppressHydrationWarning>
       {/* Background image (full-bleed) */}
-      {hasBg && (
+      {hasBg && backgroundSrc && (
         <div className="absolute inset-0 -z-10" suppressHydrationWarning>
           {backgroundSrc.startsWith('http') ? (
+            // eslint-disable-next-line @next/next/no-img-element
             <img
               src={backgroundSrc}
               alt={backgroundAlt}

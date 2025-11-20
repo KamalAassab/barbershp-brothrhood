@@ -38,6 +38,7 @@ export default function PolicyModal({
       window.addEventListener("keydown", handleEscape);
       return () => window.removeEventListener("keydown", handleEscape);
     }
+    return undefined;
   }, [isOpen, onClose]);
 
   const IconComponent = type === "privacy" ? FaShieldAlt : FaFileContract;

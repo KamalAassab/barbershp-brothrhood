@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Rye } from "next/font/google";
 import "./globals.css";
-import { CosmicAnalyticsProvider } from "cosmic-analytics";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import CookieBanner from "@/app/components/CookieBanner";
@@ -81,11 +80,9 @@ export default function RootLayout({
       <body data-editor-id="app/layout.tsx:31:7" className="antialiased bg-neutral-950 text-neutral-100" suppressHydrationWarning>
         <script suppressHydrationWarning type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <main data-editor-id="app/layout.tsx:32:9" className="min-h-screen overflow-x-hidden" suppressHydrationWarning>
-          <CosmicAnalyticsProvider>
-            <Header brandName="Barbershop" logoSrc="/brotherhood-white.png" />
-            {children}
-            <Footer address="123 Placeholder St, Your City, ST 00000" phone="+1 (895) 345-6578" email="barbershop@brotherhood.com" />
-          </CosmicAnalyticsProvider>
+          <Header brandName="Barbershop" logoSrc="/brotherhood-white.png" />
+          {children}
+          <Footer address="123 Placeholder St, Your City, ST 00000" phone="+1 (895) 345-6578" email="barbershop@brotherhood.com" />
         </main>
         {process.env.VISUAL_EDITOR_ACTIVE === 'true' &&
         <script data-editor-id="app/layout.tsx:50:9" src="/editor.js" async suppressHydrationWarning />

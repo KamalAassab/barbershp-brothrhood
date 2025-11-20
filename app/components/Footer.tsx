@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { FaInstagram, FaFacebook, FaYoutube, FaMapMarkerAlt, FaPhone, FaEnvelope } from "react-icons/fa";
 import { handleScrollClick } from "@/app/utils/scroll";
 import PolicyModal from "@/app/components/PolicyModal";
@@ -126,9 +127,11 @@ export default function Footer({
               aria-label="Home"
               suppressHydrationWarning
             >
-              <img 
+              <Image 
                 src="/favicon.png" 
                 alt="Barbershop logo" 
+                width={196}
+                height={170}
                 className="h-24 w-49 sm:h-26 sm:w-49 md:h-30 md:w-49 lg:h-30 lg:w-49 object-contain" 
                 loading="lazy" 
               />
