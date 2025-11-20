@@ -16,9 +16,9 @@ A modern, high-performance barbershop website built with Next.js 15, React 19, a
 - [Components](#components)
 - [Constants & Data](#constants--data)
 - [API Routes](#api-routes)
-- [Deployment](#deployment)
+- [Local Deployment](#-local-deployment)
 - [Code Quality](#code-quality)
-- [Contributing](#contributing)
+- [Development Workflow](#-development-workflow)
 
 ## 🎯 Overview
 
@@ -307,9 +307,8 @@ BarebrCosmicc/
 
 ### Installation
 
-1. **Clone the repository**
+1. **Navigate to the project directory**
    ```bash
-   git clone <repository-url>
    cd BarebrCosmicc
    ```
 
@@ -708,68 +707,33 @@ See `OPTIMIZATION_SUMMARY.md` for detailed optimization information.
   }
   ```
 
-## 🚢 Deployment
+## 🚢 Local Deployment
 
-### Vercel (Recommended)
+### Running Locally
 
-1. **Push code to GitHub**
-2. **Import project in Vercel**
-3. **Configure environment variables**:
-   - `NEXT_PUBLIC_BASE_URL`
-   - `VISUAL_EDITOR_ACTIVE` (optional)
-4. **Deploy**
+For local development, the project runs on your machine:
 
-Vercel automatically detects Next.js and optimizes the deployment.
+1. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+   The application will be available at [http://localhost:3000](http://localhost:3000)
 
-### Docker Deployment
+2. **Build for production**
+   ```bash
+   npm run build
+   ```
 
-Create a `Dockerfile`:
+3. **Run the production build locally**
+   ```bash
+   npm start
+   ```
 
-```dockerfile
-FROM node:18-alpine AS base
+### Environment Variables for Local Development
 
-# Install dependencies
-FROM base AS deps
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci
-
-# Build application
-FROM base AS builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
-RUN npm run build
-
-# Production image
-FROM base AS runner
-WORKDIR /app
-ENV NODE_ENV production
-
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
-
-EXPOSE 3000
-ENV PORT 3000
-
-CMD ["node", "server.js"]
-```
-
-### Other Platforms
-
-The project uses Next.js standalone output, compatible with:
-- **AWS Amplify**
-- **Netlify**
-- **Railway**
-- **Render**
-- **Any Node.js hosting platform**
-
-### Environment Variables for Production
-
-Ensure these are set in your hosting platform:
+Create a `.env.local` file in the root directory:
 ```env
-NEXT_PUBLIC_BASE_URL=https://your-actual-domain.com
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
 VISUAL_EDITOR_ACTIVE=false
 ```
 
@@ -799,22 +763,23 @@ VISUAL_EDITOR_ACTIVE=false
 - **Code Comments**: Complex logic documented
 - **README**: Comprehensive project documentation
 
-## 🤝 Contributing
+## 🤝 Development Workflow
 
-### Development Workflow
+### Making Changes
 
-1. **Fork the repository**
-2. **Create a feature branch**
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-3. **Make your changes**
-4. **Run linting and type checking**
+1. **Make your changes directly in the project**
+2. **Run linting and type checking**
    ```bash
    npm run lint
    ```
-5. **Test your changes**
-6. **Submit a pull request**
+3. **Test your changes locally**
+   ```bash
+   npm run dev
+   ```
+4. **Build for production to verify**
+   ```bash
+   npm run build
+   ```
 
 ### Code Style Guidelines
 
