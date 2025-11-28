@@ -12,7 +12,6 @@ import type { Service } from "@/app/components/ServiceCategoryModal";
 import { REVIEWS } from "@/app/constants/reviews";
 import { SERVICE_CATEGORIES } from "@/app/constants/services";
 import { FAQS } from "@/app/constants/faqs";
-import { WHATSAPP_NUMBER } from "@/app/utils/constants";
 
 // Lazy load heavy components for better initial page load
 const ReviewsCarousel = dynamic(() => import("@/app/components/ReviewsCarousel"), {
@@ -70,9 +69,9 @@ export default function Home() {
     blurb: string;
     services: Service[];
   } | null>(null);
-  
+
   const [galleryImages, setGalleryImages] = React.useState<Array<{ src: string; alt: string }>>([]);
-  
+
   // Fetch gallery images dynamically from the API
   React.useEffect(() => {
     const fetchGalleryImages = async () => {
@@ -88,7 +87,7 @@ export default function Home() {
         setGalleryImages([]);
       }
     };
-    
+
     fetchGalleryImages();
   }, []);
 
@@ -172,7 +171,7 @@ export default function Home() {
                 </div>
               </div>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -324,7 +323,7 @@ export default function Home() {
               Real feedback from our satisfied customers
             </p>
           </motion.header>
-          
+
           <div className="w-full px-0 sm:px-0">
             <ReviewsCarousel reviews={REVIEWS} />
           </div>
@@ -343,10 +342,10 @@ export default function Home() {
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-5 leading-tight px-4 sm:px-5">Book an Appointment</h2>
             <p className="text-sm sm:text-base md:text-base text-neutral-200 leading-relaxed mb-5 sm:mb-6 font-light px-4 sm:px-5">
-              Fill out the form below and we&apos;ll confirm your appointment via WhatsApp.
+              Fill out the form below and we&apos;ll get back to you shortly to confirm your appointment.
             </p>
           </motion.header>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -354,7 +353,7 @@ export default function Home() {
             transition={{ duration: 0.3, delay: 0.1 }}
             className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] p-6 sm:p-7 md:p-8 backdrop-blur-sm shadow-2xl mb-8 sm:mb-10"
           >
-            <BookingForm whatsappNumber={WHATSAPP_NUMBER} />
+            <BookingForm />
           </motion.div>
 
           <motion.div
@@ -411,7 +410,7 @@ export default function Home() {
               Get in touch with us. We typically reply quickly.
             </p>
           </motion.header>
-          
+
           <div className="grid gap-6 sm:gap-7 md:gap-6 lg:grid-cols-2">
             <motion.div
               initial={{ opacity: 0, x: -10 }}
@@ -431,7 +430,7 @@ export default function Home() {
                 <MapEmbed height={280} />
               </div>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, x: 10 }}
               whileInView={{ opacity: 1, x: 0 }}

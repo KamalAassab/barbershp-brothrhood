@@ -32,7 +32,7 @@ export default function Hero({
   void _imageSrc;
   void _imageAlt;
   const hasBg = Boolean(backgroundSrc);
-  
+
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden pt-20 sm:pt-24 md:pt-24 pb-16 sm:pb-20 md:pb-20 lg:pb-24" suppressHydrationWarning>
       {/* Background image (full-bleed) */}
@@ -135,7 +135,7 @@ export default function Hero({
         transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className="absolute bottom-6 sm:bottom-8 md:bottom-12 lg:bottom-14 xl:bottom-16 left-0 right-0 z-10" suppressHydrationWarning
       >
-        <div className="flex flex-wrap justify-center gap-6 sm:gap-7 md:gap-6 lg:gap-8 w-full max-w-4xl mx-auto px-4 sm:px-5" suppressHydrationWarning>
+        <div className="flex flex-row flex-nowrap justify-center items-center gap-2 sm:gap-8 md:gap-12 lg:gap-16 w-full max-w-5xl mx-auto px-1 sm:px-4" suppressHydrationWarning>
           {[
             { value: "10+", label: "Years Experience", icon: FaClock },
             { value: "5K+", label: "Happy Clients", icon: FaUsers },
@@ -148,13 +148,13 @@ export default function Hero({
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.6 + i * 0.1 }}
-                className="text-center group px-3 sm:px-4" suppressHydrationWarning
+                className="text-center group flex flex-col items-center" suppressHydrationWarning
               >
-                <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-1 sm:mb-1.5" suppressHydrationWarning>
-                  <IconComponent className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-3.5 md:w-3.5 text-white/70 group-hover:text-white transition-colors" />
-                  <div className="text-lg sm:text-xl md:text-lg lg:text-xl xl:text-2xl font-bold text-white group-hover:scale-110 transition-transform duration-300" suppressHydrationWarning>{stat.value}</div>
+                <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-0.5 sm:mb-1" suppressHydrationWarning>
+                  <IconComponent className="h-3.5 w-3.5 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 lg:h-5 lg:w-5 text-white/70 group-hover:text-white transition-colors" />
+                  <div className="text-base sm:text-base md:text-xl lg:text-2xl xl:text-3xl font-bold text-white group-hover:scale-110 transition-transform duration-300" suppressHydrationWarning>{stat.value}</div>
                 </div>
-                <div className="text-[10px] sm:text-xs md:text-xs text-neutral-300/90 font-medium whitespace-nowrap" suppressHydrationWarning>{stat.label}</div>
+                <div className="text-[10px] sm:text-[10px] md:text-xs lg:text-sm text-neutral-300/90 font-medium whitespace-nowrap" suppressHydrationWarning>{stat.label}</div>
               </motion.div>
             );
           })}

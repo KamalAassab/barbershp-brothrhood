@@ -36,7 +36,7 @@ function Header({ brandName, logoSrc = "/brotherhood-white.png", navLinks = defa
 
   React.useEffect(() => {
     if (!open) return;
-    
+
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
     };
@@ -49,37 +49,36 @@ function Header({ brandName, logoSrc = "/brotherhood-white.png", navLinks = defa
   return (
     <header className="fixed top-0 left-0 right-0 z-50 w-full">
       <div className="mx-auto max-w-7xl px-4 sm:px-5 md:px-6 lg:px-8 pt-4 sm:pt-5 md:pt-4" suppressHydrationWarning>
-        <nav 
-          aria-label="Primary" 
+        <nav
+          aria-label="Primary"
           className="flex items-center justify-center md:justify-center lg:justify-between bg-white/5 backdrop-blur-xl border border-white/20 rounded-xl sm:rounded-2xl px-4 sm:px-5 md:px-6 py-3 sm:py-3 md:py-3 shadow-2xl relative"
           suppressHydrationWarning
         >
           {/* Logo */}
-          <a 
+          {/* Logo */}
+          <a
             href="#home"
             onClick={(e) => handleNavClick(e, "#home")}
-            className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent m-0 p-0 flex-shrink-0 active:scale-95 transition-transform relative"
-            style={{ lineHeight: 0, width: 'auto', height: 'auto' }} 
+            className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent m-0 p-0 flex-shrink-0 active:scale-95 transition-transform relative mx-auto lg:mx-0"
             aria-label="Home"
             suppressHydrationWarning
           >
-            <Image 
-              src={logoSrc} 
-              alt={`${brandName} logo`} 
+            <Image
+              src={logoSrc}
+              alt={`${brandName} logo`}
               width={196}
               height={170}
               priority
               quality={90}
-              className="h-11 w-39 sm:h-14 sm:w-45 md:h-16 md:w-49 lg:h-20 lg:w-59 xl:h-24 xl:w-59 object-contain object-center" 
-              style={{ display: 'block', lineHeight: 0, verticalAlign: 'top', maxHeight: '100%', width: '50%', height: 'auto' }}
+              className="h-10 w-auto sm:h-12 md:h-14 lg:h-20 xl:h-20 object-contain object-center"
             />
           </a>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-4 xl:gap-6 2xl:gap-8" suppressHydrationWarning>
             {navLinks.map((l) => (
-              <a 
-                key={l.href} 
+              <a
+                key={l.href}
                 href={l.href}
                 onClick={(e) => handleNavClick(e, l.href)}
                 className="text-xs xl:text-sm font-medium text-white/80 hover:text-white transition-colors duration-200 relative group px-1"
@@ -88,7 +87,7 @@ function Header({ brandName, logoSrc = "/brotherhood-white.png", navLinks = defa
                 <span className="absolute -bottom-1 left-1 right-1 h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
               </a>
             ))}
-            <a 
+            <a
               href="#booking"
               onClick={(e) => handleNavClick(e, "#booking")}
               className="ml-2 xl:ml-4 inline-flex items-center gap-1.5 xl:gap-2 bg-white text-neutral-900 px-4 xl:px-6 py-2 xl:py-2.5 rounded-lg text-xs xl:text-sm font-semibold hover:bg-neutral-100 transition-colors duration-200 whitespace-nowrap"
@@ -99,11 +98,11 @@ function Header({ brandName, logoSrc = "/brotherhood-white.png", navLinks = defa
           </div>
 
           {/* Mobile Menu Button */}
-          <button 
-            aria-label="Open menu" 
-            aria-controls="mobile-menu" 
-            aria-expanded={open} 
-            onClick={() => setOpen((v) => !v)} 
+          <button
+            aria-label="Open menu"
+            aria-controls="mobile-menu"
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
             className="lg:hidden absolute right-4 sm:right-5 md:right-6 inline-flex items-center justify-center p-2.5 sm:p-3 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-lg hover:bg-white/10 active:scale-95 transition-all min-w-[44px] min-h-[44px]"
           >
             {open ? <FaTimes className="h-6 w-6 sm:h-7 sm:w-7" /> : <FaBars className="h-6 w-6 sm:h-7 sm:w-7" />}
@@ -122,17 +121,17 @@ function Header({ brandName, logoSrc = "/brotherhood-white.png", navLinks = defa
             <div className="p-4 sm:p-5">
               <div className="flex flex-col gap-0.5 sm:gap-1">
                 {navLinks.map((l) => (
-                  <a 
-                    key={l.href} 
+                  <a
+                    key={l.href}
                     href={l.href}
                     onClick={(e) => handleNavClick(e, l.href)}
-                    className="px-4 sm:px-5 py-3.5 sm:py-4 text-base sm:text-base font-medium text-white rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-white hover:bg-white/10 active:bg-white/15 active:scale-[0.98] transition-all min-h-[48px] flex items-center" 
+                    className="px-4 sm:px-5 py-3.5 sm:py-4 text-base sm:text-base font-medium text-white rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-white hover:bg-white/10 active:bg-white/15 active:scale-[0.98] transition-all min-h-[48px] flex items-center"
                   >
                     {l.label}
                   </a>
                 ))}
                 <div className="mt-2 sm:mt-3 pt-3 sm:pt-4 border-t border-white/10">
-                  <a 
+                  <a
                     href="#booking"
                     onClick={(e) => handleNavClick(e, "#booking")}
                     className="inline-flex items-center justify-center gap-2.5 bg-white text-neutral-900 px-5 py-3.5 sm:py-4 rounded-xl text-sm sm:text-base font-semibold w-full hover:bg-neutral-50 active:scale-95 transition-all shadow-lg min-h-[48px]"

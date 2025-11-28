@@ -2,13 +2,13 @@
 
 import React, { useMemo, useCallback } from "react";
 import { motion } from "framer-motion";
-import { FaCalendar, FaClock, FaUser, FaPhone, FaEnvelope, FaCut, FaPaperPlane } from "react-icons/fa";
+import { FaCalendar, FaClock, FaUser, FaPhone, FaEnvelope, FaCut, FaPaperPlane, FaCheckCircle, FaExclamationCircle } from "react-icons/fa";
 
 export interface BookingFormProps {
-  whatsappNumber?: string;
+  // No props needed anymore
 }
 
-export default function BookingForm({ whatsappNumber = "+18953456578" }: BookingFormProps) {
+export default function BookingForm({ }: BookingFormProps) {
   const [formData, setFormData] = React.useState({
     name: "",
     phone: "",
@@ -20,12 +20,14 @@ export default function BookingForm({ whatsappNumber = "+18953456578" }: Booking
   });
 
   const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [submitStatus, setSubmitStatus] = React.useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = React.useState('');
 
   // Calculate min and max dates (today to 7 days from today)
   const today = new Date();
   const maxDate = new Date();
   maxDate.setDate(today.getDate() + 7);
-  
+
   const minDateStr = today.toISOString().split('T')[0];
   const maxDateStr = maxDate.toISOString().split('T')[0];
 
@@ -34,17 +36,17 @@ export default function BookingForm({ whatsappNumber = "+18953456578" }: Booking
     if (!formData.preferredDate) {
       return [];
     }
-    
+
     const selectedDate = new Date(formData.preferredDate);
     const dayOfWeek = selectedDate.getDay(); // 0 = Sunday, 6 = Saturday
-    
+
     if (dayOfWeek === 0) {
       // Sunday - Closed
       return [];
     }
-    
+
     const slots: { value: string; label: string }[] = [];
-    
+
     // Helper function to format hour to 12-hour format
     const formatHour = (hour: number): string => {
       if (hour === 0) return '12:00 AM';
@@ -74,7 +76,7 @@ export default function BookingForm({ whatsappNumber = "+18953456578" }: Booking
         });
       }
     }
-    
+
     return slots;
   }, [formData.preferredDate]);
 
@@ -99,58 +101,53 @@ export default function BookingForm({ whatsappNumber = "+18953456578" }: Booking
     }));
   }, []);
 
-  const handleSubmit = useCallback((e: React.FormEvent) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setErrorMessage('');
 
-    // Format the message for WhatsApp
-    const formattedDate = formData.preferredDate 
-      ? new Date(formData.preferredDate).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
-      : 'Not specified';
-    
-    // Format time slot for WhatsApp message
-    const formatHourForMessage = (hourStr: string): string => {
-      const [hours, minutes] = hourStr.split(':');
-      const hour = parseInt(hours);
-      if (hour === 0) return '12:00 AM';
-      if (hour === 12) return '12:00 PM';
-      if (hour < 12) return `${hour}:${minutes} AM`;
-      return `${hour - 12}:${minutes} PM`;
-    };
-
-    const formattedTime = formData.preferredTime 
-      ? formData.preferredTime.split('-').map(formatHourForMessage).join(' - ')
-      : 'Not specified';
-
-    const message = `*New Booking Request*%0A%0A` +
-      `*Name:* ${encodeURIComponent(formData.name)}%0A` +
-      `*Phone:* ${encodeURIComponent(formData.phone)}%0A` +
-      `*Email:* ${encodeURIComponent(formData.email)}%0A` +
-      `*Preferred Date:* ${encodeURIComponent(formattedDate)}%0A` +
-      `*Preferred Time:* ${encodeURIComponent(formattedTime)}%0A` +
-      `*Service:* ${encodeURIComponent(formData.service || 'Not specified')}%0A` +
-      `*Additional Notes:* ${encodeURIComponent(formData.notes || 'None')}`;
-
-    // Create WhatsApp URL
-    const whatsappUrl = `https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}?text=${message}`;
-
-    // Redirect to WhatsApp
-    window.open(whatsappUrl, '_blank');
-
-    // Reset form after a short delay
-    setTimeout(() => {
-      setFormData({
-        name: "",
-        phone: "",
-        email: "",
-        preferredDate: "",
-        preferredTime: "",
-        service: "",
-        notes: ""
+    try {
+      // Send booking data to API
+      const response = await fetch('/api/booking', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send booking request');
+      }
+
+      // Success!
+      setSubmitStatus('success');
+
+      // Reset form after a short delay
+      setTimeout(() => {
+        setFormData({
+          name: "",
+          phone: "",
+          email: "",
+          preferredDate: "",
+          preferredTime: "",
+          service: "",
+          notes: ""
+        });
+        setSubmitStatus('idle');
+      }, 5000);
+
+    } catch (error) {
+      console.error('Error submitting booking:', error);
+      setSubmitStatus('error');
+      setErrorMessage(error instanceof Error ? error.message : 'Failed to send booking request. Please try again.');
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
-  }, [formData, whatsappNumber]);
+    }
+  }, [formData]);
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6 md:space-y-6">
@@ -233,16 +230,16 @@ export default function BookingForm({ whatsappNumber = "+18953456578" }: Booking
                 setFormData(prev => ({ ...prev, preferredTime: "" }));
                 return;
               }
-              
+
               const dateObj = new Date(selectedDate);
               const dayOfWeek = dateObj.getDay();
-              
+
               // Prevent Sunday selection
               if (dayOfWeek === 0) {
                 setFormData(prev => ({ ...prev, preferredDate: "", preferredTime: "" }));
                 return;
               }
-              
+
               handleChange(e);
               setFormData(prev => ({ ...prev, preferredTime: "" }));
             }}
@@ -263,7 +260,7 @@ export default function BookingForm({ whatsappNumber = "+18953456578" }: Booking
           )}
           {formData.preferredDate && !isSunday && (
             <p className="text-xs sm:text-sm text-neutral-400 mt-2">
-              {new Date(formData.preferredDate).getDay() === 6 
+              {new Date(formData.preferredDate).getDay() === 6
                 ? "Available: 10:00 AM - 4:00 PM"
                 : "Available: 9:00 AM - 6:00 PM"}
             </p>
@@ -289,11 +286,11 @@ export default function BookingForm({ whatsappNumber = "+18953456578" }: Booking
             className="w-full rounded-xl border border-white/10 bg-neutral-900/50 backdrop-blur-sm px-5 py-3.5 sm:py-3.5 text-base sm:text-base text-white focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed min-h-[48px]"
           >
             <option value="" className="bg-neutral-900">
-              {!formData.preferredDate 
-                ? "Select a date first" 
-                : isSunday 
-                ? "Closed on Sundays" 
-                : "Select a time slot"}
+              {!formData.preferredDate
+                ? "Select a date first"
+                : isSunday
+                  ? "Closed on Sundays"
+                  : "Select a time slot"}
             </option>
             {timeSlots.map((slot) => (
               <option key={slot.value} value={slot.value} className="bg-neutral-900">
@@ -346,9 +343,36 @@ export default function BookingForm({ whatsappNumber = "+18953456578" }: Booking
       </div>
 
       {/* Submit Button */}
+      {/* Success/Error Messages */}
+      {submitStatus === 'success' && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex items-center gap-3 p-4 rounded-xl bg-green-500/10 border border-green-500/20"
+        >
+          <FaCheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+          <p className="text-sm sm:text-base text-green-500">
+            Booking request sent successfully! We&apos;ll contact you shortly to confirm your appointment.
+          </p>
+        </motion.div>
+      )}
+
+      {submitStatus === 'error' && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex items-center gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/20"
+        >
+          <FaExclamationCircle className="h-5 w-5 text-red-500 flex-shrink-0" />
+          <p className="text-sm sm:text-base text-red-500">
+            {errorMessage || 'Failed to send booking request. Please try again or contact us directly.'}
+          </p>
+        </motion.div>
+      )}
+
       <motion.button
         type="submit"
-        disabled={isSubmitting}
+        disabled={isSubmitting || submitStatus === 'success'}
         whileHover={{ scale: 1.01 }}
         whileTap={{ scale: 0.97 }}
         className="group w-full inline-flex items-center justify-center gap-2.5 rounded-xl bg-white px-7 sm:px-8 py-4 sm:py-4 text-neutral-900 text-base sm:text-base font-semibold hover:bg-neutral-50 active:scale-[0.97] transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed min-h-[52px]"
@@ -361,7 +385,12 @@ export default function BookingForm({ whatsappNumber = "+18953456578" }: Booking
             >
               <FaPaperPlane className="h-5 w-5" />
             </motion.div>
-            <span>Opening WhatsApp...</span>
+            <span>Sending booking request...</span>
+          </>
+        ) : submitStatus === 'success' ? (
+          <>
+            <FaCheckCircle className="h-5 w-5 text-green-600" />
+            <span>Booking Sent!</span>
           </>
         ) : (
           <>
@@ -372,7 +401,7 @@ export default function BookingForm({ whatsappNumber = "+18953456578" }: Booking
       </motion.button>
 
       <p className="text-xs sm:text-sm text-neutral-400 text-center mt-5 sm:mt-6">
-        By submitting, you&apos;ll be redirected to WhatsApp to send your booking request.
+        By submitting, your booking request will be sent directly to our team via email.
       </p>
     </form>
   );
