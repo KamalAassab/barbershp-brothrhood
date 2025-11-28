@@ -4,11 +4,7 @@ import React, { useMemo, useCallback } from "react";
 import { motion } from "framer-motion";
 import { FaCalendar, FaClock, FaUser, FaPhone, FaEnvelope, FaCut, FaPaperPlane, FaCheckCircle, FaExclamationCircle } from "react-icons/fa";
 
-export interface BookingFormProps {
-  // No props needed anymore
-}
-
-export default function BookingForm({ }: BookingFormProps) {
+export default function BookingForm() {
   const [formData, setFormData] = React.useState({
     name: "",
     phone: "",
