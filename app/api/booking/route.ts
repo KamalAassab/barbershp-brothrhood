@@ -24,9 +24,19 @@ export async function POST(request: NextRequest) {
 
     // Validate SMTP configuration
     if (!smtpHost || !smtpPort || !smtpUser || !smtpPassword || !ownerEmail) {
-      console.error('Missing SMTP configuration in environment variables');
+      const missingVars = [];
+      if (!smtpHost) missingVars.push('BREVO_SMTP_HOST');
+      if (!smtpPort) missingVars.push('BREVO_SMTP_PORT');
+      if (!smtpUser) missingVars.push('BREVO_SMTP_USER');
+      if (!smtpPassword) missingVars.push('BREVO_SMTP_PASSWORD');
+      if (!ownerEmail) missingVars.push('BARBERSHOP_OWNER_EMAIL');
+      
+      console.error('Missing SMTP configuration in environment variables:', missingVars.join(', '));
       return NextResponse.json(
-        { error: 'Server configuration error. Please contact support.' },
+        { 
+          error: 'Booking service is temporarily unavailable. Please contact us directly via phone or email.',
+          details: 'SMTP configuration missing'
+        },
         { status: 500 }
       );
     }

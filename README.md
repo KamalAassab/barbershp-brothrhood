@@ -319,7 +319,16 @@ brotherhood-barbershop/
    ```env
    NEXT_PUBLIC_BASE_URL=https://your-domain.com
    VISUAL_EDITOR_ACTIVE=false
+   
+   # SMTP Configuration (Required for booking form)
+   BREVO_SMTP_HOST=smtp-relay.brevo.com
+   BREVO_SMTP_PORT=587
+   BREVO_SMTP_USER=your-brevo-email@example.com
+   BREVO_SMTP_PASSWORD=your-brevo-smtp-password
+   BARBERSHOP_OWNER_EMAIL=owner@your-barbershop.com
    ```
+   
+   **Note**: For Vercel deployment, add these variables in the Vercel dashboard. See [VERCEL_SETUP_GUIDE.md](./VERCEL_SETUP_GUIDE.md) for detailed instructions.
 
 4. **Run the development server**
    ```bash
@@ -348,6 +357,13 @@ npm start
 |----------|-------------|----------|---------|
 | `NEXT_PUBLIC_BASE_URL` | Base URL for the website (used in metadata and links) | Yes | `https://example.com` |
 | `VISUAL_EDITOR_ACTIVE` | Enable visual editor mode (shows editor.js) | No | `false` |
+| `BREVO_SMTP_HOST` | Brevo SMTP server hostname (e.g., `smtp-relay.brevo.com`) | Yes* | - |
+| `BREVO_SMTP_PORT` | SMTP port (usually `587` for TLS) | Yes* | - |
+| `BREVO_SMTP_USER` | Brevo SMTP username (your Brevo account email) | Yes* | - |
+| `BREVO_SMTP_PASSWORD` | Brevo SMTP password (generate from Brevo dashboard) | Yes* | - |
+| `BARBERSHOP_OWNER_EMAIL` | Email address to receive booking notifications | Yes* | - |
+
+\* Required for booking form functionality. See [VERCEL_SETUP_GUIDE.md](./VERCEL_SETUP_GUIDE.md) for detailed setup instructions.
 
 ### Next.js Configuration
 
@@ -765,7 +781,16 @@ Ensure these are set in your hosting platform:
 ```env
 NEXT_PUBLIC_BASE_URL=https://your-actual-domain.com
 VISUAL_EDITOR_ACTIVE=false
+
+# SMTP Configuration (Required for booking form)
+BREVO_SMTP_HOST=smtp-relay.brevo.com
+BREVO_SMTP_PORT=587
+BREVO_SMTP_USER=your-brevo-email@example.com
+BREVO_SMTP_PASSWORD=your-brevo-smtp-password
+BARBERSHOP_OWNER_EMAIL=owner@your-barbershop.com
 ```
+
+**📖 For detailed Vercel setup instructions, see [VERCEL_SETUP_GUIDE.md](./VERCEL_SETUP_GUIDE.md)**
 
 ## 🎨 Code Quality
 
@@ -861,6 +886,8 @@ Potential features for future development:
 
 - **OPTIMIZATION_SUMMARY.md**: Detailed performance optimization documentation
 - **MODAL_FIX_SUMMARY.md**: Service category modal z-index fix documentation
+- **VERCEL_SETUP_GUIDE.md**: Complete guide for setting up environment variables on Vercel
+- **BOOKING_BUTTON_TEST.md**: Booking button functionality test report
 
 ## 🙏 Acknowledgments
 
